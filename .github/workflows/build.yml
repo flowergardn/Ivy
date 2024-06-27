@@ -23,6 +23,7 @@ jobs:
           cache: gradle
 
       - uses: gradle/gradle-build-action@v2
+        name: Set up Gradle
         id: setup-gradle
         with:
           gradle-version: release-candidate
@@ -30,20 +31,15 @@ jobs:
       - name: Build with Gradle
         run: gradle shadowJar
 
-      - name: Get Version
+      - name: Get Ivy Version
         run: |
           echo "IVY_VERSION=$(grep 'version =' build.gradle.kts | sed -E 's/.*version = "([^"]+)".*/\1/')" >> $GITHUB_ENV
 
-      - name: Debug File System
-        run: |
-          tree
-          find . -type f -name "Ivy.jar"
-
-      - name: Release
+      - name: Release Ivy
         uses: softprops/action-gh-release@v2
         with:
           name: Release ${{ env.IVY_VERSION }}
-          tag_name: release-${{ github.sha }}
+          tag_name: release-${{ env.IVY_VERSION }}
           make_latest: "true"
           files: |
             ./plugin/build/libs/Ivy.jar

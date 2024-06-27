@@ -1,0 +1,28 @@
+[general]
+# How long the player is authorized, in seconds
+authDuration = 600
+# Commands that the player is not allowed to use, unless they're authorized (please include the /)
+blockedCommands = ["/op"]
+
+# The API key for the Ivy API
+apiKey = "API_KEY"
+# The URL for the Ivy API (You shouldn't need to change this)
+apiUrl = "https://ivy.astrid.sh"
+
+[customPlaceholders]
+# These are custom placeholders that can be used in the messages
+prefix = "<b><gradient:#248721:#62d75f>Ivy</gradient></b> |"
+
+[messages]
+notSetup = "{prefix} <red>You haven't setup 2FA yet! If this was a mistake, please contact an admin."
+alreadyAuthorized = "{prefix} <red>You're already authorized!"
+errorOccurred = "{prefix} <red>An error occurred: {error}"
+successfulAuthorization = "{prefix} <green>You're now authorized, have fun!"
+expiredSession = "{prefix} <red>Your session has now expired. If you still need to be authorized, enter your 2FA again."
+
+# Sent to the executor
+addingUser = "{prefix} <gray>Sent {player} a link to add their 2FA!"
+# Sent to the recipient
+addRequest = "{prefix} <gray>You've been requested to add 2FA to your account, please click <click:open_url:'{url}'><u>this<u></click> to scan your 2FA QR code."
+
+forbiddenCommand = "{prefix} <red>You must be authorized to use this command."

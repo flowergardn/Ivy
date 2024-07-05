@@ -1,0 +1,171 @@
+{
+  "id": "dc0fadcb-36db-4f35-82ff-20d94db3cc1c",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "6",
+  "dialect": "postgresql",
+  "tables": {
+    "public.ivy_server": {
+      "name": "ivy_server",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "ivy_server_id_unique": {
+          "name": "ivy_server_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        }
+      }
+    },
+    "public.ivy_session": {
+      "name": "ivy_session",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "minecraft_uuid": {
+          "name": "minecraft_uuid",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "server_id": {
+          "name": "server_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "secret": {
+          "name": "secret",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ivy_session_server_id_ivy_server_id_fk": {
+          "name": "ivy_session_server_id_ivy_server_id_fk",
+          "tableFrom": "ivy_session",
+          "tableTo": "ivy_server",
+          "columnsFrom": [
+            "server_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "ivy_session_id_unique": {
+          "name": "ivy_session_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        },
+        "ivy_session_minecraft_uuid_unique": {
+          "name": "ivy_session_minecraft_uuid_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "minecraft_uuid"
+          ]
+        }
+      }
+    },
+    "public.ivy_user": {
+      "name": "ivy_user",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "secret": {
+          "name": "secret",
+          "type": "varchar(32)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "minecraft_uuid": {
+          "name": "minecraft_uuid",
+          "type": "varchar(36)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "server_id": {
+          "name": "server_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ivy_user_server_id_ivy_server_id_fk": {
+          "name": "ivy_user_server_id_ivy_server_id_fk",
+          "tableFrom": "ivy_user",
+          "tableTo": "ivy_server",
+          "columnsFrom": [
+            "server_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "ivy_user_id_unique": {
+          "name": "ivy_user_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "id"
+          ]
+        },
+        "ivy_user_minecraft_uuid_unique": {
+          "name": "ivy_user_minecraft_uuid_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "minecraft_uuid"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

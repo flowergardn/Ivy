@@ -1,0 +1,7 @@
+name: ivy
+version: '${version}'
+main: sh.astrid.ivy.Ivy
+api-version: '1.20'
+authors: [astrid]
+description: Modern two-factor authentication for Minecraft
+website: https://ivy.astrid.sh/
